@@ -8,6 +8,27 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class CarsPrismaRepository implements CarsRepository {
   constructor(private prisma: PrismaService) {}
+  async listAllCars(): Promise<Car[]> {
+    const cars = await this.prisma.car.findMany({
+      include: {
+        comments: true,
+        photos: true,
+      },
+    });
+    return cars;
+  }
+  async findCarById(id: string): Promise<Car> {
+    const car = await this.prisma.car.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        comments: true,
+        photos: true,
+      },
+    });
+    return car;
+  }
 
   async createCar(data: CreateCarDto): Promise<Car> {
     const car = new Car();
