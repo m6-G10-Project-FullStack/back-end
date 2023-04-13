@@ -4,4 +4,6 @@ import { Car } from '../entities/car.entity';
 
 export abstract class CarsRepository {
   abstract createCar(data: CreateCarDto): Promise<Car>;
+  abstract listAllCars(): Promise<Car[]>;
+  abstract findCarById(id: string): Promise<Car>;
 }
