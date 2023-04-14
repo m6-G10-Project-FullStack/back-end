@@ -6,4 +6,9 @@ export abstract class CarsRepository {
   abstract createCar(data: CreateCarDto): Promise<Car>;
   abstract listAllCars(): Promise<Car[]>;
   abstract findCarById(id: string): Promise<Car>;
+  abstract findManyWithCursor(
+    page: number,
+    limit: number,
+    cursor?: any,
+  ): Promise<{ data: any[]; count: number }>;
 }

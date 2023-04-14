@@ -1,4 +1,6 @@
+/* eslint-disable prettier/prettier */
 import { Decimal } from '@prisma/client/runtime';
+import { Exclude } from 'class-transformer';
 import { randomUUID } from 'crypto';
 
 export class Car {
@@ -13,6 +15,8 @@ export class Car {
   description: string;
   readonly is_active: boolean;
   model: string;
+
+  @Exclude()
   brandId: number;
 
   constructor() {

@@ -14,8 +14,4 @@ export class BrandsService {
   async findAll() {
     return this.brandRepository.findAllBrands();
   }
-
-  findOne(id: number) {
-    return `This action returns a #${id} brand`;
-  }
 }
