@@ -28,8 +28,8 @@ export class CarsService {
     return this.carsRepository.updateCar(id, updateCarDto);
   }
 
-  async findAllPagination(page: number, limit: number, cursor: string) {
-    return await this.carsRepository.findManyWithCursor(page, limit, cursor);
+  async findAllPagination(page: string, limit: string) {
+    return await this.carsRepository.findManyWithCursor(page, limit);
   }
 
   async remove(id: string) {

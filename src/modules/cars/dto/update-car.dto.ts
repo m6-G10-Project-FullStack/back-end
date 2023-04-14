@@ -6,5 +6,5 @@ import { IsBoolean, IsOptional } from 'class-validator';
 export class UpdateCarDto extends PartialType(CreateCarDto) {
   @IsBoolean()
   @IsOptional()
-  is_active?: boolean;
+  is_active: boolean;
 }

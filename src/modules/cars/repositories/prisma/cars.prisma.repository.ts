@@ -61,22 +61,14 @@ export class CarsPrismaRepository implements CarsRepository {
     });
   }
 
-  async findManyWithCursor(
-    page: number,
-    limit: number,
-    cursor?: Prisma.CarWhereUniqueInput,
-  ): Promise<{ data: any[]; count: number }> {
-    const take = limit;
-    const skip = cursor ? 1 : page === 1 ? 0 : (page - 1) * limit;
-
-    const [data, count] = await Promise.all([
-      this.prisma.car.findMany({
-        take: limit,
-        skip,
-        cursor: cursor ? { id: cursor.id } : undefined,
-      }),
-      this.prisma.car.count(),
-    ]);
-    return { data, count };
+  async findManyWithCursor(page: string, limit: string) {
+    if (limit) {
+      return await this.prisma.car.findMany({
+        take: parseInt(limit),
+        skip: parseInt(page),
+      });
+    } else {
+      return await this.prisma.car.findMany({});
+    }
   }
 }
