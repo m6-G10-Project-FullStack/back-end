@@ -2,6 +2,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCarDto } from './dto/create-car.dto';
 import { CarsRepository } from './repositories/cars.repository';
+import { UpdateCarDto } from './dto/update-car.dto';
 
 @Injectable()
 export class CarsService {
@@ -21,11 +22,15 @@ export class CarsService {
     return car;
   }
 
-  // update(id: string, updateCarDto: UpdateCarDto) {
-  //   return `This action updates a #${id} car`;
-  // }
+  async update(id: string, updateCarDto: UpdateCarDto) {
+    const car = await this.carsRepository.findCarById(id);
+    if (!car) throw new NotFoundException('Invalid car Id');
+    return this.carsRepository.updateCar(id, updateCarDto);
+  }
 
-  // remove(id: string) {
-  //   return `This action removes a #${id} car`;
-  // }
+  async remove(id: string) {
+    const car = await this.carsRepository.findCarById(id);
+    if (!car) throw new NotFoundException('Invalid car Id');
+    return this.carsRepository.softDelete(id);
+  }
 }
