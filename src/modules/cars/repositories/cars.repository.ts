@@ -9,4 +9,9 @@ export abstract class CarsRepository {
   abstract findCarById(id: string): Promise<Car>;
   abstract updateCar(id: string, data: UpdateCarDto): Promise<Car>;
   abstract softDelete(id: string): Promise<void>;
+  abstract findManyWithCursor(
+    page: number,
+    limit: number,
+    cursor?: any,
+  ): Promise<{ data: any[]; count: number }>;
 }

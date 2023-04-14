@@ -28,6 +28,10 @@ export class CarsService {
     return this.carsRepository.updateCar(id, updateCarDto);
   }
 
+  async findAllPagination(page: number, limit: number, cursor: string) {
+    return await this.carsRepository.findManyWithCursor(page, limit, cursor);
+  }
+
   async remove(id: string) {
     const car = await this.carsRepository.findCarById(id);
     if (!car) throw new NotFoundException('Invalid car Id');
