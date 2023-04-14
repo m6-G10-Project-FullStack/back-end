@@ -21,6 +21,10 @@ export class CarsService {
     return car;
   }
 
+  async findAllPagination(page: number, limit: number, cursor: string) {
+    return await this.carsRepository.findManyWithCursor(page, limit, cursor);
+  }
+
   // update(id: string, updateCarDto: UpdateCarDto) {
   //   return `This action updates a #${id} car`;
   // }

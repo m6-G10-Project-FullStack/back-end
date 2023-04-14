@@ -4,14 +4,15 @@ import {
   Get,
   Post,
   Body,
-  Patch,
+  // Patch,
   Param,
-  Delete,
+  // Delete,
   ParseUUIDPipe,
+  Query,
 } from '@nestjs/common';
 import { CarsService } from './cars.service';
 import { CreateCarDto } from './dto/create-car.dto';
-import { UpdateCarDto } from './dto/update-car.dto';
+// import { UpdateCarDto } from './dto/update-car.dto';
 
 @Controller('api/cars')
 export class CarsController {
@@ -23,8 +24,17 @@ export class CarsController {
   }
 
   @Get()
-  findAll() {
-    return this.carsService.findAll();
+  async findAll(
+    @Query('page') page = 1,
+    @Query('limit') limit = 3,
+    @Query('cursor') cursor?: any,
+  ): Promise<{ data: any[]; count: number }> {
+    const { data, count } = await this.carsService.findAllPagination(
+      parseInt(page.toString()),
+      parseInt(limit.toString()),
+      cursor,
+    );
+    return { data, count };
   }
 
   @Get(':id')
