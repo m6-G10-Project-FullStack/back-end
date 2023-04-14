@@ -13,7 +13,7 @@ export class Car {
   price: Decimal;
   readonly is_promo: boolean;
   description: string;
-  readonly is_active: boolean;
+  is_active: boolean;
   model: string;
 
   @Exclude()
@@ -21,6 +21,5 @@ export class Car {
 
   constructor() {
     this.id = randomUUID();
-    this.is_promo = this.price > this.fipe ? false : true;
   }
 }
