@@ -25,8 +25,12 @@ export class CarsController {
   }
 
   @Get()
-  findAll(@Query('page') page = '0', @Query('limit') limit?: string) {
-    return this.carsService.findAllPagination(page, limit);
+  findAll(
+    @Query('page') page = '0',
+    @Query('limit') limit = '2',
+    @Query('brand') brand?: string,
+  ) {
+    return this.carsService.findAllPagination(page, limit, brand);
   }
 
   @Get(':id')
