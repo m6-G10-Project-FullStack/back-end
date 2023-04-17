@@ -25,17 +25,12 @@ export class CarsController {
   }
 
   @Get()
-  async findAll(
-    @Query('page') page = 1,
-    @Query('limit') limit = 3,
-    @Query('cursor') cursor?: any,
-  ): Promise<{ data: any[]; count: number }> {
-    const { data, count } = await this.carsService.findAllPagination(
-      parseInt(page.toString()),
-      parseInt(limit.toString()),
-      cursor,
-    );
-    return { data, count };
+  findAll(
+    @Query('page') page = '0',
+    @Query('limit') limit = '2',
+    @Query('brand') brand?: string,
+  ) {
+    return this.carsService.findAllPagination(page, limit, brand);
   }
 
   @Get(':id')

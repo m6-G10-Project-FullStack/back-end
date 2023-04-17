@@ -12,10 +12,6 @@ export class CarsService {
     return await this.carsRepository.createCar(createCarDto);
   }
 
-  async findAll() {
-    return await this.carsRepository.listAllCars();
-  }
-
   async findOne(id: string) {
     const car = await this.carsRepository.findCarById(id);
     if (!car) throw new NotFoundException('Invalid car Id');
@@ -28,8 +24,8 @@ export class CarsService {
     return this.carsRepository.updateCar(id, updateCarDto);
   }
 
-  async findAllPagination(page: number, limit: number, cursor: string) {
-    return await this.carsRepository.findManyWithCursor(page, limit, cursor);
+  async findAllPagination(page: string, limit: string, brand: string) {
+    return await this.carsRepository.findAll(page, limit, brand);
   }
 
   async remove(id: string) {

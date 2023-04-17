@@ -11,16 +11,6 @@ import { Prisma } from '@prisma/client';
 export class CarsPrismaRepository implements CarsRepository {
   constructor(private prisma: PrismaService) {}
 
-  async listAllCars(): Promise<Car[]> {
-    const cars = await this.prisma.car.findMany({
-      include: {
-        comments: true,
-        photos: true,
-        Brand: true,
-      },
-    });
-    return cars;
-  }
   async findCarById(id: string): Promise<Car> {
     const car = await this.prisma.car.findUnique({
       where: {
@@ -61,22 +51,20 @@ export class CarsPrismaRepository implements CarsRepository {
     });
   }
 
-  async findManyWithCursor(
-    page: number,
-    limit: number,
-    cursor?: Prisma.CarWhereUniqueInput,
-  ): Promise<{ data: any[]; count: number }> {
-    const take = limit;
-    const skip = cursor ? 1 : page === 1 ? 0 : (page - 1) * limit;
-
-    const [data, count] = await Promise.all([
-      this.prisma.car.findMany({
-        take: limit,
-        skip,
-        cursor: cursor ? { id: cursor.id } : undefined,
-      }),
-      this.prisma.car.count(),
-    ]);
-    return { data, count };
+  async findAll(page: string, limit: string, brand: string) {
+    if (brand) {
+      return await this.prisma.car.findMany({
+        take: parseInt(limit),
+        skip: parseInt(page),
+        where: { Brand: { name: brand } },
+        include: { Brand: true },
+      });
+    } else {
+      return await this.prisma.car.findMany({
+        take: parseInt(limit),
+        skip: parseInt(page),
+        include: { Brand: true },
+      });
+    }
   }
 }
