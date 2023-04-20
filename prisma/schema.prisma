@@ -26,6 +26,7 @@ model User {
   street      String
   number      String
   complement  String?
+  color       String? 
   cars        Car[]
   comments    Comment[]
   @@map("users")

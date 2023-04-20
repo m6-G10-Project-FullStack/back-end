@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/database/prisma.service';
@@ -15,9 +16,27 @@ export class UserPrismaRepository implements UserRepository {
 
     Object.assign(user, { ...data });
 
+    const colors = [
+      'random1',
+      'random2',
+      'random3',
+      'random4',
+      'random5',
+      'random6',
+      'random7',
+      'random8',
+      'random9',
+      'random10',
+      'random11',
+      'random12',
+    ];
+
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
     const newUser = await this.prisma.user.create({
       data: {
         ...user,
+        color: randomColor,
       },
       include: {
         cars: true,

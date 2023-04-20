@@ -21,6 +21,7 @@ export class User {
   street: string;
   number: string;
   complement?: string;
+  color?: string;
 
   constructor() {
     this.id = randomUUID();
