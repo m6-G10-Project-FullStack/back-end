@@ -3,9 +3,10 @@ import { Module, ClassSerializerInterceptor } from '@nestjs/common';
 import { CarsModule } from './modules/cars/cars.module';
 import { BrandsModule } from './modules/brands/brands.module';
 import { GalleryModule } from './modules/gallery/gallery.module';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
-  imports: [CarsModule, BrandsModule, GalleryModule],
+  imports: [CarsModule, BrandsModule, GalleryModule, UsersModule],
   controllers: [],
   providers: [],
 })

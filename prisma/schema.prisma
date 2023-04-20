@@ -25,8 +25,8 @@ model User {
   city        String
   street      String
   number      String
-  complement  String
-  // cars        Car[]
+  complement  String?
+  cars        Car[]
   comments    Comment[]
   @@map("users")
 }
@@ -45,8 +45,8 @@ model Car {
   model       String
   comments    Comment[]
   photos      Gallery[]
-  // User        User?     @relation(fields: [userId], references: [id])
-  // userId      String?
+  User        User     @relation(fields: [userId], references: [id])
+  userId      String
   Brand       Brand?    @relation(fields: [brandId], references: [id])
   brandId     Int?
   @@map("cars")
