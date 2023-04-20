@@ -48,4 +48,8 @@ export class CreateCarDto {
   @IsNumber()
   @IsNotEmpty()
   brandId: number;
+
+  @IsString()
+  @IsNotEmpty()
+  userId: string;
 }
