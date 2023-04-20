@@ -9,10 +9,12 @@ import {
   Delete,
   ParseUUIDPipe,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { CarsService } from './cars.service';
 import { CreateCarDto } from './dto/create-car.dto';
 import { UpdateCarDto } from './dto/update-car.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 // import { UpdateCarDto } from './dto/update-car.dto';
 
 @Controller('api/cars')
@@ -20,11 +22,13 @@ export class CarsController {
   constructor(private readonly carsService: CarsService) {}
 
   @Post()
+  @UseGuards(JwtAuthGuard)
   create(@Body() createCarDto: CreateCarDto) {
     return this.carsService.create(createCarDto);
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   findAll(
     @Query('page') page = '0',
     @Query('limit') limit = '2',
@@ -34,11 +38,13 @@ export class CarsController {
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.carsService.findOne(id);
   }
 
   @Patch(':id')
+  @UseGuards(JwtAuthGuard)
   update(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() updateCarDto: UpdateCarDto,
@@ -47,6 +53,7 @@ export class CarsController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.carsService.remove(id);
   }
