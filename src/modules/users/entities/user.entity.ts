@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Exclude } from 'class-transformer';
 import { randomUUID } from 'crypto';
 
@@ -7,7 +8,7 @@ export class User {
   name: string;
   cpf: string;
   phone: string;
-  birthday: Date;
+  birthday: string;
   description: string;
   is_seller: boolean;
 

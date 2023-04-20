@@ -15,6 +15,7 @@ export class Car {
   is_active: boolean;
   model: string;
   brandId: number;
+  userId: string;
 
   constructor() {
     this.id = randomUUID();

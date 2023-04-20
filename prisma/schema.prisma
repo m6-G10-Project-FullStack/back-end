@@ -16,7 +16,7 @@ model User {
   name        String
   cpf         String
   phone       String
-  birthday    DateTime
+  birthday    String
   description String
   is_seller   Boolean   @default(false)
   password    String

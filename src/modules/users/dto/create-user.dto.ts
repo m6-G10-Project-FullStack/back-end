@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { hashSync } from 'bcryptjs';
 import { Transform } from 'class-transformer';
 import {
@@ -26,7 +27,7 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty()
-  birthday: Date;
+  birthday: string;
 
   @IsString()
   @IsNotEmpty()
