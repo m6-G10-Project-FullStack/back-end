@@ -29,7 +29,6 @@ model User {
   color       String? 
   cars        Car[]
   comments    Comment[]
-  coverImage  String
   @@map("users")
 }
 
@@ -45,6 +44,7 @@ model Car {
   description String
   is_active   Boolean   @default(true)
   model       String
+  coverImage  String
   comments    Comment[]
   photos      Gallery[]
   User        User      @relation(fields: [userId], references: [id])

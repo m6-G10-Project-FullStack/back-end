@@ -22,7 +22,6 @@ export class User {
   number: string;
   complement?: string;
   color?: string;
-  coverImage: string;
 
   constructor() {
     this.id = randomUUID();

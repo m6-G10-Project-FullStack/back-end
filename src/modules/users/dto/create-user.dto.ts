@@ -67,8 +67,4 @@ export class CreateUserDto {
   @IsString()
   @IsOptional()
   complement?: string;
-
-  @IsString()
-  @IsNotEmpty()
-  coverImage: string;
 }

@@ -28,7 +28,6 @@ export class CarsController {
   }
 
   @Get()
-  @UseGuards(JwtAuthGuard)
   findAll(
     @Query('page') page = '0',
     @Query('limit') limit = '2',
@@ -38,7 +37,6 @@ export class CarsController {
   }
 
   @Get(':id')
-  @UseGuards(JwtAuthGuard)
   findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.carsService.findOne(id);
   }

@@ -14,6 +14,7 @@ export class Car {
   description: string;
   is_active: boolean;
   model: string;
+  coverImage: string;
   brandId: number;
   userId: string;
 
