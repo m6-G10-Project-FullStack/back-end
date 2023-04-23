@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Decimal } from '@prisma/client/runtime';
 import {
   IsNotEmpty,
@@ -47,4 +48,8 @@ export class CreateCarDto {
   @IsNumber()
   @IsNotEmpty()
   brandId: number;
+
+  @IsString()
+  @IsNotEmpty()
+  userId: string;
 }

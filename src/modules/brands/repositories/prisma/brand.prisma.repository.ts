@@ -16,6 +16,6 @@ export class BrandPrismaRepository implements BrandRepository {
     return newBrand;
   }
   async findAllBrands(): Promise<Brand[]> {
-    return await this.prisma.brand.findMany({ include: { cars: true } });
+    return await this.prisma.brand.findMany();
   }
 }
