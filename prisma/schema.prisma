@@ -29,6 +29,7 @@ model User {
   color       String? 
   cars        Car[]
   comments    Comment[]
+  coverImage  String
   @@map("users")
 }
 
