@@ -12,16 +12,11 @@ export class BrandsService {
   constructor(private brandRepository: BrandRepository) {}
 
   async create(createBrandDto: CreateBrandDto) {
-    const brand = await this.brandRepository.findbyName(createBrandDto.name);
-    if (brand) {
-      throw new ConflictException('Name already exists!');
-    }
-
     return this.brandRepository.createBrand(createBrandDto);
   }
 
   async findByName(name: string) {
-    const brand = await this.brandRepository.findbyName(name);
+    const brand = await this.brandRepository.findbyNameOrCreate(name);
 
     if (!brand) {
       throw new NotFoundException('Name not found');

@@ -9,12 +9,18 @@ import { Injectable } from '@nestjs/common';
 export class BrandPrismaRepository implements BrandRepository {
   constructor(private prisma: PrismaService) {}
 
-  async findbyName(name: string): Promise<Brand> {
+  async findbyNameOrCreate(name: string): Promise<Brand> {
     const lowerName = name.toLowerCase();
 
     const brand = await this.prisma.brand.findUnique({
       where: { name: lowerName },
     });
+    if (!brand) {
+      const brand = new Brand();
+      Object.assign(brand, { name: lowerName });
+      const newBrand = await this.prisma.brand.create({ data: { ...brand } });
+      return newBrand;
+    }
     return brand;
   }
 
