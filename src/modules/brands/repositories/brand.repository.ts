@@ -5,4 +5,5 @@ import { Brand } from '../entities/brand.entity';
 export abstract class BrandRepository {
   abstract createBrand(data: CreateBrandDto): Promise<Brand>;
   abstract findAllBrands(): Promise<Brand[]>;
+  abstract findbyName(name: string): Promise<Brand>;
 }
