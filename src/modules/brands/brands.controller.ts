@@ -15,6 +15,7 @@ export class BrandsController {
   }
 
   @Get(':name')
+  @UseGuards(JwtAuthGuard)
   findByName(@Param('name') name: string) {
     return this.brandsService.findByName(name);
   }
