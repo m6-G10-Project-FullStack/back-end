@@ -52,4 +52,8 @@ export class CreateCarDto {
   @IsString()
   @IsNotEmpty()
   userId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  coverImage: string;
 }
