@@ -10,6 +10,9 @@ import { UserRepository } from '../user.repository';
 @Injectable()
 export class UserPrismaRepository implements UserRepository {
   constructor(private prisma: PrismaService) {}
+  findAll(): Promise<User[]> {
+    return this.prisma.user.findMany();
+  }
 
   async createUser(data: CreateUserDto): Promise<User> {
     const user = new User();

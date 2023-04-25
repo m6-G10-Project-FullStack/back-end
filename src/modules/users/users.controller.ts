@@ -27,8 +27,12 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
+  @Get()
+  findAll() {
+    return this.usersService.findAll();
+  }
+
   @Get(':id')
-  @UseGuards(JwtAuthGuard)
   @UseInterceptors(ClassSerializerInterceptor)
   findById(@Param('id', ParseUUIDPipe) id: string) {
     return this.usersService.findById(id);

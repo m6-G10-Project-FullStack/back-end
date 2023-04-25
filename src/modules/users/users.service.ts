@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   ConflictException,
   Injectable,
@@ -57,5 +58,9 @@ export class UsersService {
       throw new NotFoundException('User could not be found, invalid Id');
 
     return await this.userRepository.deleteUser(id);
+  }
+
+  async findAll() {
+    return this.userRepository.findAll();
   }
 }
