@@ -5,7 +5,6 @@ import { Car } from '../../entities/car.entity';
 import { CarsRepository } from '../cars.repository';
 import { Injectable } from '@nestjs/common';
 import { UpdateCarDto } from '../../dto/update-car.dto';
-import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class CarsPrismaRepository implements CarsRepository {
