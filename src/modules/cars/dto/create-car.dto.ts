@@ -29,13 +29,13 @@ export class CreateCarDto {
   @IsNotEmpty()
   color: string;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
-  fipe: Prisma.Decimal;
+  fipe: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
-  price: Prisma.Decimal;
+  price: number;
 
   @IsString()
   @IsNotEmpty()

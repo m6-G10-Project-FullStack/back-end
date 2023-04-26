@@ -38,8 +38,8 @@ model Car {
   fuel        String
   km          Int
   color       String
-  fipe        Decimal
-  price       Decimal
+  fipe        Int
+  price       Int
   is_promo    Boolean
   description String
   is_active   Boolean   @default(true)
