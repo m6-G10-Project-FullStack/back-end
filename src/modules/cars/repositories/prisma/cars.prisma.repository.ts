@@ -16,9 +16,9 @@ export class CarsPrismaRepository implements CarsRepository {
         id,
       },
       include: {
-        comments: true,
-        photos: true,
         Brand: true,
+        photos: true,
+        User: { select: { name: true } },
       },
     });
     return car;
@@ -56,13 +56,21 @@ export class CarsPrismaRepository implements CarsRepository {
         skip: parseInt(page) * parseInt(limit),
         take: parseInt(limit),
         where: { Brand: { name: brand } },
-        include: { Brand: true },
+        include: {
+          Brand: true,
+          photos: true,
+          User: { select: { name: true } },
+        },
       });
     } else {
       return await this.prisma.car.findMany({
         take: parseInt(limit),
         skip: parseInt(page) * parseInt(limit),
-        include: { Brand: true },
+        include: {
+          Brand: true,
+          photos: true,
+          User: { select: { name: true } },
+        },
       });
     }
   }
