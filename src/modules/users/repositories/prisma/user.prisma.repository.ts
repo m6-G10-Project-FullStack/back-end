@@ -56,6 +56,7 @@ export class UserPrismaRepository implements UserRepository {
       },
       include: {
         cars: true,
+        _count: true,
       },
     });
 
