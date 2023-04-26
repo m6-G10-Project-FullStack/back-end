@@ -21,7 +21,6 @@ export class BrandsController {
   }
 
   @Get()
-  @UseGuards(JwtAuthGuard)
   findAll() {
     return this.brandsService.findAll();
   }
