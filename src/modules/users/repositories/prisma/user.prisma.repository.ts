@@ -60,7 +60,7 @@ export class UserPrismaRepository implements UserRepository {
       },
     });
 
-    return plainToInstance(User, user);
+    return user;
   }
 
   async getUserByEmail(email: string): Promise<User> {

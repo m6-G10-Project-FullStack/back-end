@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Decimal } from '@prisma/client/runtime';
+import { Prisma } from '@prisma/client';
 import {
   IsNotEmpty,
   IsString,
@@ -7,6 +7,7 @@ import {
   MaxLength,
   Max,
   Min,
+  IsDecimal,
 } from 'class-validator';
 
 export class CreateCarDto {
@@ -28,13 +29,13 @@ export class CreateCarDto {
   @IsNotEmpty()
   color: string;
 
-  @IsNumber()
+  @IsDecimal()
   @IsNotEmpty()
-  fipe: Decimal;
+  fipe: Prisma.Decimal;
 
-  @IsNumber()
+  @IsDecimal()
   @IsNotEmpty()
-  price: Decimal;
+  price: Prisma.Decimal;
 
   @IsString()
   @IsNotEmpty()

@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Decimal } from '@prisma/client/runtime';
+import { Prisma } from '@prisma/client';
 import { randomUUID } from 'crypto';
 
 export class Car {
@@ -8,8 +8,8 @@ export class Car {
   fuel: string;
   km: number;
   color: string;
-  fipe: Decimal;
-  price: Decimal;
+  fipe: Prisma.Decimal;
+  price: Prisma.Decimal;
   readonly is_promo: boolean;
   description: string;
   is_active: boolean;
