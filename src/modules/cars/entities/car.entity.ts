@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-import { Prisma } from '@prisma/client';
 import { randomUUID } from 'crypto';
 
 export class Car {
@@ -8,8 +7,8 @@ export class Car {
   fuel: string;
   km: number;
   color: string;
-  fipe: Prisma.Decimal;
-  price: Prisma.Decimal;
+  fipe: number;
+  price: number;
   readonly is_promo: boolean;
   description: string;
   is_active: boolean;
