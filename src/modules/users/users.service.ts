@@ -4,13 +4,20 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { randomUUID } from 'node:crypto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserRepository } from './repositories/user.repository';
+import { MailService } from 'src/utils/mail.service';
+import { PrismaService } from 'src/database/prisma.service';
 
 @Injectable()
 export class UsersService {
-  constructor(private userRepository: UserRepository) {}
+  constructor(
+    private userRepository: UserRepository,
+    private mailService: MailService,
+    private prisma: PrismaService,
+  ) {}
 
   async create(createUserDto: CreateUserDto) {
     const findUser = await this.userRepository.getUserByEmail(
@@ -62,5 +69,30 @@ export class UsersService {
 
   async findAll() {
     return this.userRepository.findAll();
+  }
+
+  async sendResetEmailPassword(email: string) {
+    const findUser = await this.userRepository.getUserByEmail(email);
+
+    if (!findUser) {
+      throw new NotFoundException('User could not be found, invalid email');
+    }
+
+    const resetToken = randomUUID();
+
+    await this.prisma.user.update({
+      where: { email },
+      data: {
+        token: resetToken,
+      },
+    });
+
+    const resetPasswordTemplate = this.mailService.resetPassword(
+      email,
+      findUser.name,
+      resetToken,
+    );
+
+    await this.mailService.sendEmail(resetPasswordTemplate);
   }
 }
