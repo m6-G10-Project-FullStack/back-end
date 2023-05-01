@@ -26,7 +26,8 @@ model User {
   street      String
   number      String
   complement  String?
-  color       String? 
+  color       String?
+  token       String?
   cars        Car[]
   comments    Comment[]
   @@map("users")
@@ -47,7 +48,7 @@ model Car {
   coverImage  String
   comments    Comment[]
   photos      Gallery[]
-  User        User      @relation(fields: [userId], references: [id])
+  User        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String
   Brand       Brand?    @relation(fields: [brandId], references: [id])
   brandId     Int
@@ -57,9 +58,9 @@ model Car {
 model Comment {
   id      String  @id 
   comment String
-  User    User?   @relation(fields: [userId], references: [id])
+  User    User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId  String
-  Car     Car?    @relation(fields: [carId], references: [id])
+  Car     Car?    @relation(fields: [carId], references: [id],  onDelete: Cascade)
   carId   String
   @@map("comments")
 }
