@@ -10,6 +10,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { UserRepository } from './repositories/user.repository';
 import { MailService } from 'src/utils/mail.service';
 import { PrismaService } from 'src/database/prisma.service';
+import { hashSync } from 'bcryptjs';
 
 @Injectable()
 export class UsersService {
@@ -94,5 +95,18 @@ export class UsersService {
     );
 
     await this.mailService.sendEmail(resetPasswordTemplate);
+  }
+
+  async resetPassword(password: string, resetToken: string) {
+    const user = await this.prisma.user.findFirst({
+      where: { token: resetToken },
+    });
+    if (!user)
+      throw new NotFoundException('User could not be found, invalid email');
+
+    await this.prisma.user.update({
+      where: { id: user.id },
+      data: { password: hashSync(password, 10), token: null },
+    });
   }
 }

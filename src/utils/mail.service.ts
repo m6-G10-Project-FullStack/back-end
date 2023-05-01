@@ -2,22 +2,23 @@
 import * as Mailgen from 'mailgen';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { SendMailDto } from 'src/modules/users/dto/send-mail.dto';
+import { MailerService } from '@nestjs-modules/mailer';
 
 const mailGenerator = new Mailgen({
   theme: 'default',
   product: {
-    name: 'M6',
+    name: 'Kenzie webmotors reset password',
     link: 'http://localhost:3000',
   },
 });
 
 @Injectable()
 export class MailService {
-  constructor(private readonly mailerService: MailService) {}
+  constructor(private readonly mailerService: MailerService) {}
 
   async sendEmail({ to, subject, text }: SendMailDto) {
     await this.mailerService
-      .sendEmail({
+      .sendMail({
         to,
         subject,
         html: text,
@@ -27,7 +28,7 @@ export class MailService {
       })
       .catch((err) => {
         console.log(err);
-        throw new InternalServerErrorException();
+        throw new InternalServerErrorException('Failed to send email');
       });
   }
 
