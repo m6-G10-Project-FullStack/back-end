@@ -60,7 +60,7 @@ model Comment {
   comment String
   User    User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId  String
-  Car     Car?    @relation(fields: [carId], references: [id])
+  Car     Car?    @relation(fields: [carId], references: [id],  onDelete: Cascade)
   carId   String
   @@map("comments")
 }
