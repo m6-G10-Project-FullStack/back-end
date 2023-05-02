@@ -1,21 +1,10 @@
 /* eslint-disable prettier/prettier */
-import { Prisma } from '@prisma/client';
-import {
-  IsNotEmpty,
-  IsString,
-  IsNumber,
-  MaxLength,
-  Max,
-  Min,
-  IsDecimal,
-} from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber, MaxLength } from 'class-validator';
 
 export class CreateCarDto {
-  @IsNumber()
+  @IsString()
   @IsNotEmpty()
-  @Max(2023)
-  @Min(2017)
-  year: number;
+  year: string;
 
   @IsString()
   @IsNotEmpty()

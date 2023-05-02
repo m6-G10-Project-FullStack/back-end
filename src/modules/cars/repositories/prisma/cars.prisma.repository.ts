@@ -51,12 +51,26 @@ export class CarsPrismaRepository implements CarsRepository {
     });
   }
 
-  async findAll(page: string, limit: string, brand: string) {
-    if (brand) {
+  async findAll(
+    page: string,
+    limit: string,
+    brand: string,
+    model: string,
+    color: string,
+    year: string,
+    fuel: string,
+  ) {
+    if (brand || model || color || year || year || fuel) {
       return await this.prisma.car.findMany({
         skip: parseInt(page) * parseInt(limit),
         take: parseInt(limit),
-        where: { Brand: { name: brand } },
+        where: {
+          Brand: { name: brand },
+          model: model,
+          color: color,
+          year: year,
+          fuel: fuel,
+        },
         include: {
           Brand: true,
           photos: true,
