@@ -57,6 +57,7 @@ model Car {
 
 model Comment {
   id      String  @id 
+  created_at DateTime @default(now())
   comment String
   User    User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId  String
