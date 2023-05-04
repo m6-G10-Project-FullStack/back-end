@@ -30,10 +30,22 @@ export class CarsController {
   @Get()
   findAll(
     @Query('page') page = '0',
-    @Query('limit') limit = '2',
+    @Query('limit') limit = '12',
     @Query('brand') brand?: string,
+    @Query('model') model?: string,
+    @Query('color') color?: string,
+    @Query('year') year?: string,
+    @Query('fuel') fuel?: string,
   ) {
-    return this.carsService.findAllPagination(page, limit, brand);
+    return this.carsService.findAllPagination(
+      page,
+      limit,
+      brand,
+      model,
+      color,
+      year,
+      fuel,
+    );
   }
 
   @Get(':id')

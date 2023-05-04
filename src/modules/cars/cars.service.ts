@@ -24,8 +24,24 @@ export class CarsService {
     return this.carsRepository.updateCar(id, updateCarDto);
   }
 
-  async findAllPagination(page: string, limit: string, brand: string) {
-    return await this.carsRepository.findAll(page, limit, brand);
+  async findAllPagination(
+    page: string,
+    limit: string,
+    brand: string,
+    model: string,
+    color: string,
+    year: string,
+    fuel: string,
+  ) {
+    return await this.carsRepository.findAll(
+      page,
+      limit,
+      brand,
+      model,
+      color,
+      year,
+      fuel,
+    );
   }
 
   async remove(id: string) {

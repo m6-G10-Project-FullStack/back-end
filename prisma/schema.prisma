@@ -35,7 +35,7 @@ model User {
 
 model Car {
   id          String    @id
-  year        Int
+  year        String
   fuel        String
   km          Int
   color       String

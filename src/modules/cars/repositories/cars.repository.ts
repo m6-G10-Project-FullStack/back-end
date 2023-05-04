@@ -8,5 +8,13 @@ export abstract class CarsRepository {
   abstract findCarById(id: string): Promise<Car>;
   abstract updateCar(id: string, data: UpdateCarDto): Promise<Car>;
   abstract softDelete(id: string): Promise<void>;
-  abstract findAll(page: string, limit: string, brand?: string): Promise<Car[]>;
+  abstract findAll(
+    page: string,
+    limit: string,
+    brand?: string,
+    model?: string,
+    color?: string,
+    year?: string,
+    fuel?: string,
+  ): Promise<Car[]>;
 }

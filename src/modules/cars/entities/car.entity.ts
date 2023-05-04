@@ -3,7 +3,7 @@ import { randomUUID } from 'crypto';
 
 export class Car {
   readonly id: string;
-  year: number;
+  year: string;
   fuel: string;
   km: number;
   color: string;
