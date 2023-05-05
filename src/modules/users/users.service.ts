@@ -72,7 +72,7 @@ export class UsersService {
     return this.userRepository.findAll();
   }
 
-  async sendResetEmailPassword(email: string) {
+  async sendResetEmailPassword(email: any) {
     const findUser = await this.userRepository.getUserByEmail(email);
 
     if (!findUser) {
@@ -82,14 +82,14 @@ export class UsersService {
     const resetToken = randomUUID();
 
     await this.prisma.user.update({
-      where: { email },
+      where: { email: email.email },
       data: {
         token: resetToken,
       },
     });
-
+    console.log(email);
     const resetPasswordTemplate = this.mailService.resetPassword(
-      email,
+      email.email,
       findUser.name,
       resetToken,
     );
