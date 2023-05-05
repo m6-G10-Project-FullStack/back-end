@@ -82,12 +82,11 @@ export class UsersService {
     const resetToken = randomUUID();
 
     await this.prisma.user.update({
-      where: { email },
+      where: { email: email },
       data: {
         token: resetToken,
       },
     });
-
     const resetPasswordTemplate = this.mailService.resetPassword(
       email,
       findUser.name,
