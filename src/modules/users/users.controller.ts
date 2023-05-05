@@ -57,7 +57,7 @@ export class UsersController {
 
   @HttpCode(200)
   @Post('resetPassword')
-  async sendEmailResetPassword(@Body() email: string) {
+  async sendEmailResetPassword(@Body('email') email: string) {
     await this.usersService.sendResetEmailPassword(email);
     return { message: 'token send' };
   }
