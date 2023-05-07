@@ -89,4 +89,12 @@ export class CarsPrismaRepository implements CarsRepository {
       });
     }
   }
+
+  async permanentDelete(id: string): Promise<void> {
+    await this.prisma.car.delete({
+      where: {
+        id,
+      },
+    });
+  }
 }

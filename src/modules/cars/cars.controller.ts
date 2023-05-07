@@ -80,4 +80,11 @@ export class CarsController {
   remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.carsService.remove(id);
   }
+
+  @Delete(':id/permanent')
+  @ApiResponse({ status: 204, description: 'Deleta permanentemente o anúncio' })
+  @UseGuards(JwtAuthGuard)
+  delete(@Param('id', ParseUUIDPipe) id: string) {
+    return this.carsService.delete(id);
+  }
 }
