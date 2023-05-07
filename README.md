@@ -1,73 +1,127 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+<h1 align="center">Motors Shop API</h1>
+
+<h2 align="center">Índice</h2>
+
+<ul>
+  <li>
+    <a href="#deps">Instalando dependências</a>
+  </li>
+  <li>
+    <a href="#env">Configurando variáveis de ambiente</a>
+  </li>
+  <li>
+    <a href="#client">Gerando cliente do Prisma e rodando migrações</a>
+  </li>
+  <li>
+    <a href="#run">Rodando a aplicação</a>
+  </li>
+  <li>
+    <a href="#doc">Documentação</a>
+  </li>
+</ul>
+
+<p>
+  Para rodar a API primeiro você precisa ter em sua máquina:
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<ul>
+  <li>
+    <a href="https://nodejs.org/en/download" target="_blank">Node.js</a>
+  </li>
+  <li>
+    Administrador de pacotes (<a href="https://docs.npmjs.com/getting-started" target="_blank">npm</a> ou <a href="https://yarnpkg.com/getting-started" target="_blank">yarn</a>)
+  </li>
+  <li>
+    <a href="https://www.postgresql.org/download/" target="_blank">Banco de dados PostgreSQL</a>
+  </li>
+</ul>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+<br />
+
+<h2 align="center" id="deps">Instalando dependências</h2>
+
+<p>
+  A instalação de dependências é algo de grande importância para o funcionamento correto da aplicação, basta seguir os comandos a seguir e as dependências serão automaticamente instaladas:
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
+<h3>npm</h3>
 
 ```bash
-$ npm install
+npm install
 ```
 
-## Running the app
+<h3>yarn</h3>
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+yarn
 ```
 
-## Test
+<br />
+
+<h2 align="center" id="env">Configurando variáveis de ambiente</h2>
+
+<p>
+  Variáveis de ambiente servem para a configuração local da sua aplicação, como URL para conexão com banco de dados, secret key, email para envio automátio e etc.
+</p>
+
+<p>
+  Basta criar um arquivo <strong>'.env'</strong> na raiz do projeto e seguir o conteúdo presente no arquivo '.env.example'.
+</p>
+
+<br />
+
+<h2 align="center" id="client">Gerando cliente do Prisma e rodando migrações</h2>
+
+<p>
+  O Prisma é um ORM robusto, e para utilizá-lo corretamente primeiro precisamos instalar o Prisma Client e em seguida rodar as migrations para criar nossas tabelas e relacionamentos.
+</p>
+
+<h3>npm</p>
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npx prisma generate
 ```
 
-## Support
+```bash
+npx prisma migrate dev
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+<h3>yarn</h3>
 
-## Stay in touch
+```bash
+yarn prisma generate
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+yarn prisma migrate dev
+```
 
-## License
+<br />
 
-Nest is [MIT licensed](LICENSE).
+<h2 align="center" id="run">Rodando a aplicação</h2>
+
+<p>
+  Agora que as dependências foram instaladas, o Prisma Client foi instalado corretamente e as migrations foram executadas no banco de dados, agora basta rodar o seguinte comando para iniciar nossa aplicação:
+</p>
+
+<h3>npm</h3>
+
+```bash
+npm run dev
+```
+
+<h3>yarn</h3>
+
+```bash
+yarn dev
+```
+
+<br />
+
+<h2 align="center" id="doc">Documentação</h2>
+
+<p>
+  A documentação foi feita usando o Swagger, e pode ser encontrada na rota <strong>'/api/docs/'</strong>, basta iniciar a aplicação com os comando supracitados
+</p>
+
+<a href="#top">Voltar ao topo</a>

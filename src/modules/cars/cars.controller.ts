@@ -15,19 +15,26 @@ import { CarsService } from './cars.service';
 import { CreateCarDto } from './dto/create-car.dto';
 import { UpdateCarDto } from './dto/update-car.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 // import { UpdateCarDto } from './dto/update-car.dto';
 
+@ApiTags('Cars')
 @Controller('api/cars')
 export class CarsController {
   constructor(private readonly carsService: CarsService) {}
 
   @Post()
+  @ApiResponse({ status: 201, description: 'Criação de um anúncio' })
   @UseGuards(JwtAuthGuard)
   create(@Body() createCarDto: CreateCarDto) {
     return this.carsService.create(createCarDto);
   }
 
   @Get()
+  @ApiResponse({
+    status: 200,
+    description: 'Listagem dos carros; é possível usar as querys para filtrar',
+  })
   findAll(
     @Query('page') page = '0',
     @Query('limit') limit = '12',
@@ -49,11 +56,16 @@ export class CarsController {
   }
 
   @Get(':id')
+  @ApiResponse({
+    status: 200,
+    description: 'Listagem de anúncio por meio de um ID',
+  })
   findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.carsService.findOne(id);
   }
 
   @Patch(':id')
+  @ApiResponse({ status: 200, description: 'Atualiza um anúncio' })
   @UseGuards(JwtAuthGuard)
   update(
     @Param('id', ParseUUIDPipe) id: string,
@@ -63,6 +75,7 @@ export class CarsController {
   }
 
   @Delete(':id')
+  @ApiResponse({ status: 204, description: 'Desativa o anúncio' })
   @UseGuards(JwtAuthGuard)
   remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.carsService.remove(id);
