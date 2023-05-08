@@ -49,4 +49,10 @@ export class CarsService {
     if (!car) throw new NotFoundException('Invalid car Id');
     return this.carsRepository.softDelete(id);
   }
+
+  async delete(id: string) {
+    const car = await this.carsRepository.findCarById(id);
+    if (!car) throw new NotFoundException('Invalid car Id');
+    return this.carsRepository.permanentDelete(id);
+  }
 }

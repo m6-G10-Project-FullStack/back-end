@@ -17,4 +17,5 @@ export abstract class CarsRepository {
     year?: string,
     fuel?: string,
   ): Promise<Car[]>;
+  abstract permanentDelete(id: string): Promise<void>;
 }
