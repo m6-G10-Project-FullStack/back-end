@@ -10,6 +10,7 @@ import {
   ParseUUIDPipe,
   Query,
   UseGuards,
+  HttpCode,
 } from '@nestjs/common';
 import { CarsService } from './cars.service';
 import { CreateCarDto } from './dto/create-car.dto';
@@ -81,6 +82,7 @@ export class CarsController {
     return this.carsService.remove(id);
   }
 
+  @HttpCode(204)
   @Delete(':id/permanent')
   @ApiResponse({ status: 204, description: 'Deleta permanentemente o anúncio' })
   @UseGuards(JwtAuthGuard)
