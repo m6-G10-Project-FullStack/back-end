@@ -20,7 +20,9 @@ export class CarsPrismaRepository implements CarsRepository {
         photos: { select: { photo_link: true } },
         User: { select: { name: true, color: true, description: true } },
         comments: {
-          include: { User: { select: { color: true, name: true } } },
+          include: {
+            User: { select: { color: true, name: true, phone: true } },
+          },
         },
       },
     });
