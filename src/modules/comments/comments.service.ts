@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
@@ -40,5 +41,13 @@ export class CommentsService {
     }
 
     return this.commentRepository.deleteComment(id);
+  }
+
+  async updated(payload: UpdateCommentDto, id: string) {
+    const findComment = await this.prisma.comment.findUnique({ where: { id } });
+    if (!findComment) {
+      throw new NotFoundException('comment id not found');
+    }
+    return this.commentRepository.updateComment(payload, id);
   }
 }

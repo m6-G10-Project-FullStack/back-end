@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Controller,
   Get,
@@ -13,6 +14,7 @@ import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { UpdateCommentDto } from './dto/update-comment.dto';
 
 @ApiTags('Comments')
 @Controller('api/comments')
@@ -24,6 +26,13 @@ export class CommentsController {
   @UseGuards(JwtAuthGuard)
   create(@Body() createCommentDto: CreateCommentDto) {
     return this.commentsService.create(createCommentDto);
+  }
+
+  @Patch(':id')
+  @ApiResponse({ status: 200, description: 'Atualização de um comentário' })
+  @UseGuards(JwtAuthGuard)
+  update(@Body() updateCommentDto: UpdateCommentDto, @Param('id') id: string) {
+    return this.commentsService.updated(updateCommentDto, id);
   }
 
   @Delete(':id')
