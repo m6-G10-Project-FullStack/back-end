@@ -2,6 +2,6 @@
 # exit on error
 set -o errexit
 
-npm install
-npm run build
-npx prisma migrate dev
+yarn
+yarn build
+yarn prisma migrate dev
